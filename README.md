@@ -75,5 +75,3 @@ Forget dusty rule-engines and lone tree-models. We built a **multi-modal, H100-f
 **Ready to flip the script on Fraud at Corgi?**
 Feed it data, sit back, and watch the scams vanish. 🐕💥
 
-```
-
