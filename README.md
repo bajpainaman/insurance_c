@@ -1,6 +1,6 @@
 # 🚀 Corgi Insurance Fraud Blaster
 
-Forget dusty rule-engines and lone tree-models. We built a **multi-modal, H100-fueled** fraud detector that smokes the competition—and only gets sharper the more claims you feed it.
+Forget dusty rule-engines and lone tree-models. We built a **multi-modal, H100-fueled** fraud detector that BEATS the competition—and only gets sharper the more claims you feed it.
 
 ---
 
@@ -38,7 +38,7 @@ Forget dusty rule-engines and lone tree-models. We built a **multi-modal, H100-f
    git clone https://github.com/bajpainaman/insurance_c.git
    cd insurance_c
    docker build -t corgi-fraud .
-````
+   ```
 
 2. **Run It**
 
