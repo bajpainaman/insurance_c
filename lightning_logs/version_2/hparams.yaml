@@ -1,0 +1,2 @@
+tabular_input_dim: 1002
+use_focal_loss: true

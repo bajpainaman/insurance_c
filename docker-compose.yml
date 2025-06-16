@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  fraud-detection:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: fraud_detection_system
+    volumes:
+      # Mount data directory
+      - ./data:/app/data:ro
+      # Mount models directory for persistence
+      - ./models:/app/models
+      # Mount logs directory
+      - ./logs:/app/logs
+    environment:
+      - PYTHONPATH=/app
+      - CUDA_VISIBLE_DEVICES=0  # Use GPU if available
+    ports:
+      - "8080:8080"  # For future API service
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+          cpus: "4.0"
+        reservations:
+          memory: 4G
+          cpus: "2.0"
+    networks:
+      - fraud-detection-network
+
+  # Optional: Jupyter notebook for development
+  jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    container_name: fraud_detection_jupyter
+    command: >
+      bash -c "pip install jupyter jupyterlab &&
+               jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''"
+    volumes:
+      - .:/app
+    ports:
+      - "8888:8888"
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    networks:
+      - fraud-detection-network
+    profiles:
+      - development
+
+networks:
+  fraud-detection-network:
+    driver: bridge
+
+volumes:
+  models:
+    driver: local
+  logs:
+    driver: local
